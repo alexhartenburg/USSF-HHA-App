@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      DATABASE_HOST: 127.0.0.1
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 71421cf6f23fdd86
+      POSTGRES_DB: ussf_hha_db
+      POSTGRES_HOST: postgresql
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db_volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: ./app
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app
+    environment:
+      - NODE_ENV=development
+      - DATABASE_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=71421cf6f23fdd86
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=ussf_hha_db
+      - SALT=2ec8eb513d96e51c
+    depends_on:
+      - "server"
