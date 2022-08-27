@@ -37,4 +37,4 @@ services:
       - POSTGRES_DB=ussf_hha_db
       - SALT=2ec8eb513d96e51c
     depends_on:
-      - "server"
+      - "db"
