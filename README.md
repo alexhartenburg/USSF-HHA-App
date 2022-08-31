@@ -1,6 +1,8 @@
 # USSF-HHA-App
 ## Services
 ### App
-### Server
+- Docker container running Node (version)
+- App is built on NextJS using TypeScript
+- The API is built within the app container using the NextJS API feature
 ### Database
-## Garmin Connect Interface
+- Docker container running postgres
