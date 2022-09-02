@@ -30,9 +30,6 @@ jobs:
       - name: Build UI
         run: |
           docker build -t ussf-hha-app ./app
-      - name: Test UI
-        run: |
-          docker run -e CI=true ussf-hha-app nohup npm run start &
       - name: Run Hawk Scan
         uses: stackhawk/hawkscan-action@v2.0.0
         with:
