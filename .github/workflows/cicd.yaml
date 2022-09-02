@@ -22,21 +22,6 @@ jobs:
       - name: Test UI
         run: |
           docker run -e CI=true ussf-hha-app npm test
-  owasp-zap-scan:
-    name: Build and Scan w/OWASP-Zap
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build UI
-        run: |
-          docker build -t ussf-hha-app ./app
-      - name: Run Server
-        run: |
-          docker run -e CI=true ussf-hha-app nohup npm run start &
-      - name: ZAP Scan
-        uses: zaproxy/action-full-scan@v0.4.0
-        with:
-          target: 'http://0.0.0.0:3000'
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
