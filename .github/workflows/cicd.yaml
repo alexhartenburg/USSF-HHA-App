@@ -89,7 +89,7 @@ jobs:
   deploy-ui:
     name: Deploy UI to Heroku
     # Needs specifies the steps that must previously complete in order to deploy your application.
-    needs: [ build-and-test-app, analyze ]
+    needs: [ build-and-test-app, stackhawk-scan, analyze ]
     runs-on: ubuntu-latest
 
     steps:
