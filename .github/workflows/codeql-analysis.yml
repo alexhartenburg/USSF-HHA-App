@@ -9,7 +9,7 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "CodeQL"
+name: "CodeQL Security Scan"
 
 on:
   push:
@@ -18,7 +18,8 @@ on:
     # The branches below must be a subset of the branches above
     branches: [ "main" ]
   schedule:
-    - cron: '32 13 * * 1'
+    # Runs at 0000 on Mondays
+    - cron: '0 0 * * 1'
 
 jobs:
   analyze:
