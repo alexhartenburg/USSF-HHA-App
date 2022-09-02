@@ -4,7 +4,7 @@ const creatJestConfig = nextJest( { dir: '.' } );
 
 const customJestConfig = {
     clearMocks: true,
-    moduleDirectories: ['node_modules', '.'],
+    moduleDirectories: ['node_modules', 'pages'],
     setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
 };
 
