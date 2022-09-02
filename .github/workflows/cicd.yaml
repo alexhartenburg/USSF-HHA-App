@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
   
 jobs:
-  build-and-test-ui:
+  build-and-test-app:
     name: Build and Test UI
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +23,6 @@ jobs:
         run: |
           docker run -e CI=true ussf-hha-app npm test
   analyze:
-    needs: build-and-test-ui
     name: Analyze
     runs-on: ubuntu-latest
     permissions:
@@ -72,3 +71,18 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
+  deploy-ui:
+    name: Deploy UI to Heroku
+    # Needs specifies the steps that must previously complete in order to deploy your application.
+    needs: [ build-and-test-app, analyze ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with: 
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "ussf-hha"
+          heroku_email: "alexhartenburg@gmail.com"
+          appdir: "app/"
+          usedocker: true
