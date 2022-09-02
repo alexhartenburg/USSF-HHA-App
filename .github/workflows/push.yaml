@@ -2,9 +2,11 @@ name: Build and Test on all Pushes & PRs
 
 on:
   push:
-    branches: ['**']
+    branches-ignore: 
+      - master
   pull_request:
-    branches: ['**']
+    branches-ignore: 
+      - master
   workflow_dispatch:
   
 jobs:
