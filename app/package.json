@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "test": "jest",
-    "start:development": "node start",
-    "start:staging": "NODE_ENV=staging node start",
-    "start:production": "NODE_ENV=production node start",
+    "start:": "NODE_ENV=$(grep '^NODE_ENV' .env) node start",
     "lint": "next lint"
   },
   "dependencies": {
