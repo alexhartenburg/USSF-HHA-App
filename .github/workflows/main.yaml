@@ -16,9 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build UI
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         run: |
           docker build -t ussf-hha-app ./app
-      - name: Test UI
-        run: |
-          docker run -e CI=true ussf-hha-app npm test
