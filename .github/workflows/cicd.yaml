@@ -22,24 +22,6 @@ jobs:
       - name: Test UI
         run: |
           docker run -e CI=true ussf-hha-app npm test
-  stackhawk-scan:
-    name: Build and Scan UI w/Stackhawk
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build Container
-        run: |
-          docker build -t ussf-hha-app ./app
-      - name: Build App
-        run: |
-          docker run -e CI=true ussf-hha-app npm run build
-      - name: Run Server
-        run: |
-          docker run -e CI=true ussf-hha-app nohup npm run start &
-      - name: Run Hawk Scan
-        uses: stackhawk/hawkscan-action@v2.0.0
-        with:
-          apiKey: ${{ secrets.HAWK_API_KEY }}
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
