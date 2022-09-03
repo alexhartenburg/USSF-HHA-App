@@ -8,17 +8,20 @@ on:
   workflow_dispatch:
   
 jobs:
-  build-and-test-app:
-    name: Build and Test UI
+  test:
+    name: Build, Test, and Lint App
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build UI
+      - name: Build App
         run: |
           docker build -t ussf-hha-app ./app
-      - name: Test UI
+      - name: Test App
         run: |
-          docker run -e CI=true ussf-hha-app npm test
+          docker run -e CI=true ussf-hha-app npm run test
+      - name: Lint App
+        run: |
+          docker run -e CI-true ussf-hha-app npm run lint
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
