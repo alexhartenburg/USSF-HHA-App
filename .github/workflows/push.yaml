@@ -19,9 +19,6 @@ jobs:
       - name: Test App
         run: |
           docker run -e CI=true ussf-hha-app npm run test
-      - name: Lint App
-        run: |
-          docker run -e CI-true ussf-hha-app npm run lint
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
